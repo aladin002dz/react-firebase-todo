@@ -4,11 +4,11 @@ Minimalistic CRUD prototype of "React with Firebase"
 
 ## Project Roadmap
 
-[] **Register / Login**: register, login and logout from the web app.  
-[] **Create**: being able to add a new todo.  
-[] **Read**: read the list of todos.  
-[] **Update**: update an exiting todo.  
-[] **Delete**: delete a selected todo.
+ [ ] **Register / Login**: register, login and logout from the web app.  
+ [ ] **Create**: being able to add a new todo.  
+ [ ] **Read**: read the list of todos.  
+ [ ] **Update**: update an exiting todo.  
+ [ ] **Delete**: delete a selected todo.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
