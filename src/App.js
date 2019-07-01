@@ -3,10 +3,10 @@ import './App.css';
 import { Router, navigate } from '@reach/router';
 import firebase from './components/Firebase';
 
-import Login from './components/login';
-import Register from './components/register';
-import Todos from './components/todos';
-import Nav from './components/nav';
+import Login from './components/Login';
+import Register from './components/Register';
+import Todos from './components/Todos';
+import Nav from './components/Nav';
 
 class App extends Component {
   constructor() {
@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       user: null,
       displayName: null,
-      userID: null
+      userID: null,
+      todos:[]
     };
   }
 
@@ -26,6 +27,29 @@ class App extends Component {
           displayName: FBUser.displayName,
           userID: FBUser.uid
         });
+
+        const todosRef = firebase
+          .database()
+          .ref('todos/' + FBUser.uid);
+
+        todosRef.on('value', snapshot => {
+          let todos = snapshot.val();
+          let todosList = [];
+
+          for (let item in todos) {
+            todosList.push({
+              todoID: item,
+              todoName: todos[item].todoName
+            });
+          }
+
+          this.setState({
+            todos: todosList,
+            howManyTodos: todosList.length
+          });
+        });
+      } else {
+        this.setState({ user: null });
       }
     });
   }
@@ -40,7 +64,7 @@ class App extends Component {
           displayName: FBUser.displayName,
           userID: FBUser.uid
         });
-        navigate('/todos');
+        navigate('/');
       });
     });
   };
@@ -61,6 +85,13 @@ class App extends Component {
       });
   };
 
+  addTodo = todoName => {
+    const ref = firebase
+      .database()
+      .ref(`todos/${this.state.user.uid}`);
+    ref.push({ todoName: todoName });
+  };
+
   render() {
     return (
       <div className="App">
@@ -69,19 +100,16 @@ class App extends Component {
             user={this.state.user}
             logOutUser={this.logOutUser}
           />
-          {this.state.user && (
-            <Todos
-              user={this.state.user} 
-              userName={this.state.displayName}
-              logOutUser={this.logOutUser}
-            />
-          )}
         </header>
 
         <Router>
           <Login path="/login" />
           <Register path="/register" registerUser={this.registerUser} />
-          <Todos path="/"  user={this.state.user} />
+          <Todos path="/"  
+            user={this.state.user}
+            todos={this.state.todos}
+            addTodo={this.addTodo}
+            userID={this.state.userID} />
         </Router>
 
       </div>
