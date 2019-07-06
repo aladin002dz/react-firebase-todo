@@ -75,7 +75,7 @@ class Todos extends Component {
             </div>
           </div>
 
-          <div className="col-11 col-md-6 text-center">
+          <div className="col-md-8 text-center">
             <div className="card border-top-0 rounded-0">
               {this.props.todos && this.props.todos.length ? (
                 <div className="card-body py-2">
@@ -86,7 +86,7 @@ class Todos extends Component {
               ) : null}
 
               {this.props.todos && (
-                <div className="list-group list-group-flush">
+                <div className="card-body py-2">
                   <TodosList
                     userID={this.props.userID}
                     todos={this.props.todos}

@@ -20,35 +20,25 @@ class TodosList extends Component {
     const { todos } = this.props;
     const myTodos = todos.map(item => {
       return (
-        <div className="list-group-item d-flex" key={item.todoID}>
-          <section
-            className="btn-group align-self-center"
+        <div className="row" key={item.todoID}>
+
+          <div className="col-8 text-left">
+            {item.todoName}
+          </div>
+
+          <div
+            className="col-4 text-right"
             role="group"
             aria-label="Todo Options"
           >
             <button
-              className="btn btn-sm btn-outline-secondary"
+              className="btn btn-sm"
               title="Delete Todo"
               onClick={e => this.deleteTodo(e, item.todoID)}
             >
-              Delete
+              <i class="far fa-trash-alt"></i>
             </button>
-            <button
-              className="btn btn-sm btn-outline-secondary"
-              title="Check In"
-              onClick={() =>
-                navigate(
-                  `/checkin/${this.props.userID}/${item.todoID}`
-                )
-              }
-            >
-              Check In
-            </button>
-          </section>
-
-          <section className="pl-3 text-left align-self-center">
-            {item.todoName}
-          </section>
+          </div>
         </div>
       );
     });

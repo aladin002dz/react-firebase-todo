@@ -89,7 +89,7 @@ class App extends Component {
     const ref = firebase
       .database()
       .ref(`todos/${this.state.user.uid}`);
-    ref.push({ todoName: todoName });
+    ref.push({ todoName: todoName, completed: false });
   };
 
   render() {
