@@ -39,7 +39,8 @@ class App extends Component {
           for (let item in todos) {
             todosList.push({
               todoID: item,
-              todoName: todos[item].todoName
+              todoName: todos[item].todoName,
+              completed: todos[item].completed
             });
           }
 
