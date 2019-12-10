@@ -1,6 +1,7 @@
 # React-Firebase Todo
 
-Minimalistic CRUD prototype of "React with Firebase"
+Minimalistic CRUD prototype of "React with Firebase"  
+Demo [here](https://react-firebase-todo.netlify.com/)
 
 ## Project Roadmap
 
